@@ -19,6 +19,10 @@ class Solution {
            }       
         }
 
+        // return ans.toArray(new String[0]);
+
+        
+        // return ans.stream().toArray(String[] ::new);
         return ans.toArray(new String[ans.size()]);
     }
 }
