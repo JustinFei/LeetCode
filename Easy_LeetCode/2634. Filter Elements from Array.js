@@ -19,6 +19,6 @@ var filter = function(arr, fn) {
     arr.forEach((ele, i) => {
         if (fn(ele, i)) res.push(ele);
     });
-
+    // arr.forEach((a, i) => fn(a, i) ? res.push(a) : null);
     return res;
 };
