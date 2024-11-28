@@ -25,20 +25,19 @@ class Solution {
             graph.get(i + 1).add(i);
         }
         
-        int[] answer = new int[queries.length];
-        int queryIdx = 0;
+        int[] res = new int[queries.length];
         
-        for (int[] query : queries) {
-            int source = query[0];
-            int target = query[1];
+        for (int i = 0; i < queries.length; i++) {
+            int source = queries[i][0];
+            int target = queries[i][1];
             
             graph.get(target).add(source);
             distances[source] = Math.min(distances[source], distances[target] + 1);
             updateDistances(graph, source, distances);
             
-            answer[queryIdx++] = distances[0];
+            res[i] = distances[0];
         }
         
-        return answer;
+        return res;
     }
 }
