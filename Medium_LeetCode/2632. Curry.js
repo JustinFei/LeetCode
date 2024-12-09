@@ -3,11 +3,12 @@
  * @return {Function}
  */
 var curry = function(fn) {
-    const args = [];
-    return function curried(...newArgs) {
-        args.push(...newArgs);  // Add new toppings to existing ones
-        if (args.length < fn.length) return curried;  // The curry isn't ready yet!
-        return fn(...args);  // The curry is ready! :D
+     return function curried(...args) {
+        if (args.length < fn.length) { // The curry isn't ready yet!
+            return (...newArgs) => curried(...args, ...newArgs);
+        }
+        
+        return fn(...args); // The curry is ready! :D
     };
 };
 
@@ -16,3 +17,15 @@ var curry = function(fn) {
  * const csum = curry(sum);
  * csum(1)(2) // 3
  */
+
+// --------------------------
+
+var curry = function (fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    }
+
+    return curried.bind(this, ...args);
+  };
+};
