@@ -1,21 +1,17 @@
 class Solution {
     public int maxScore(String s) {
-        int ones = 0;
-        for (int i = 0; i < s.length(); i++) {
-            ones += s.charAt(i) == '1' ? 1 : 0;
-        }
-        int res = 0;
-        int zeros = 0;
+        if (s == null || s.length() == 0) return 0;
+        int left = 0, right = 0, res = 0;
+
+        for (int i = 0; i < s.length(); i++)
+            right += s.charAt(i) == '1' ? 1 : 0;
+        
         for (int i = 0; i < s.length() - 1; i++) {
-            if (s.charAt(i) == '1') {
-                ones--;
-            } else {
-                zeros++;
-            }
-
-            res = Math.max(res, zeros + ones);
+            if (s.charAt(i) == '0') left++;
+            else right--;
+            res = Math.max(left + right, res);
         }
-
+        
         return res;
     }
 }
