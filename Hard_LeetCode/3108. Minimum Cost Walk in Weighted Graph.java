@@ -6,7 +6,8 @@ class Solution {
     public int[] minimumCost(int n, int[][] edges, int[][] queries) {
         // Initialize the parent array with -1 as initially each node belongs to its own component
         parent = new int[n];
-        for (int i = 0; i < n; i++) parent[i] = -1;
+        // for (int i = 0; i < n; i++) parent[i] = -1;
+        Arrays.fill(parent, -1);
 
         depth = new int[n];
 
