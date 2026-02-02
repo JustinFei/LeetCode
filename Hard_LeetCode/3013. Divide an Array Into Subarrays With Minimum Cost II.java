@@ -86,19 +86,19 @@ class Solution {
 
     public long minimumCost(int[] nums, int k, int dist) {
         int n = nums.length;
-        Container cnt = new Container(k - 2);
-        for (int i = 1; i < k - 1; i++) {
+        Container cnt = new Container(k - 1);
+        for (int i = 1; i < k; i++) {
             cnt.add(nums[i]);
         }
 
-        long ans = cnt.sum() + nums[k - 1];
+        long ans = cnt.sum();
         for (int i = k; i < n; i++) {
             int j = i - dist - 1;
             if (j > 0) {
                 cnt.erase(nums[j]);
             }
-            cnt.add(nums[i - 1]);
-            ans = Math.min(ans, cnt.sum() + nums[i]);
+            cnt.add(nums[i]);
+            ans = Math.min(ans, cnt.sum());
         }
 
         return ans + nums[0];
